@@ -130,7 +130,7 @@ class Signal<RET(ARGS...)> : boost::noncopyable
 
   Slot connect(Callback&& func, const boost::shared_ptr<void>& tie)
   {
-    boost::shared_ptr<SlotImpl> slotImpl(new SlotImpl(impl_, func, tie));
+    boost::shared_ptr<SlotImpl> slotImpl(new SlotImpl(impl_, std::forward<Callback>(func), tie));
     add(slotImpl);
     return slotImpl;
   }
